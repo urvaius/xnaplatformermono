@@ -50,12 +50,12 @@ namespace xnaplatformermono
         /// </summary>
         protected override void LoadContent()
         {
-            ScreenManager.Instance.LoadContent(Content);
+            
 
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            ScreenManager.Instance.LoadContent(Content);
             // TODO: use this.Content to load your game content here
         }
 

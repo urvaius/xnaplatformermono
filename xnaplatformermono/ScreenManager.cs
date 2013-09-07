@@ -41,11 +41,18 @@ namespace xnaplatformermono
                 return instance;
             }
         }
+
+        public ContentManager Content
+        {
+            get { return content; }
+        }
+
         public Vector2 Dimensions
         {
             get { return dimensions; }
             set { dimensions = value; }
         }
+
 
 
         #endregion
@@ -67,6 +74,8 @@ namespace xnaplatformermono
         public void LoadContent(ContentManager Content)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
+            currentScreen.LoadContent(content);
+
 
         }
         public void Update(GameTime gameTime)

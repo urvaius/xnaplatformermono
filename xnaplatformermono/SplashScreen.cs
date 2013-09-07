@@ -16,9 +16,12 @@ namespace xnaplatformermono
 
         public override void LoadContent(ContentManager Content)
         {
+
+           
             base.LoadContent(Content);
             if (font == null)
                 font = content.Load<SpriteFont>("gameFont");
+            
         }
 
         public override void UnloadContent()
