@@ -50,6 +50,9 @@ namespace xnaplatformermono
         /// </summary>
         protected override void LoadContent()
         {
+            ScreenManager.Instance.LoadContent(Content);
+
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -76,6 +79,7 @@ namespace xnaplatformermono
                 Exit();
 
             // TODO: Add your update logic here
+            ScreenManager.Instance.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -87,6 +91,10 @@ namespace xnaplatformermono
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            ScreenManager.Instance.Draw(spriteBatch);
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 

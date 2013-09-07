@@ -11,7 +11,10 @@ namespace xnaplatformermono
     {
 
         #region Variables
-
+        /// <summary>
+        /// creating custom conetnt manager
+        /// </summary>
+        ContentManager content;
         GameScreen currentScreen;
         GameScreen newScreen;
         /// <summary>
@@ -35,7 +38,7 @@ namespace xnaplatformermono
             {
                 if (instance == null)
                     instance = new ScreenManager();
-                return Instance;
+                return instance;
             }
         }
         public Vector2 Dimensions
@@ -52,14 +55,18 @@ namespace xnaplatformermono
         {
             newScreen = screen;
             ScreenStack.Push(screen);
-
+            currentScreen.UnloadContent();
+            currentScreen = newScreen;
+            currentScreen.LoadContent(content);
         }
         public void Initialize()
         {
+            currentScreen = new SplashScreen();
 
         }
         public void LoadContent(ContentManager Content)
         {
+            content = new ContentManager(Content.ServiceProvider, "Content");
 
         }
         public void Update(GameTime gameTime)

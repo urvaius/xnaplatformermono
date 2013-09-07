@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
+
 
 namespace xnaplatformermono
 {
-    public class SplashScreen : GameScreen
+   public class TitleScreen : GameScreen
     {
+
+
         KeyboardState keyState;
         SpriteFont font;
 
@@ -29,12 +32,12 @@ namespace xnaplatformermono
         public override void Update(GameTime gametime)
         {
             keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Z))
-                ScreenManager.Instance.AddScreen(new TitleScreen());
+            if (keyState.IsKeyDown(Keys.Enter))
+                ScreenManager.Instance.AddScreen(new SplashScreen());
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "Splashscreen",
+            spriteBatch.DrawString(font, "Titlescreen",
                 new Vector2(100, 100), Color.Black);
         }
     }
