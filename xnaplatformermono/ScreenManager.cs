@@ -2,18 +2,77 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 namespace xnaplatformermono
 {
     public class ScreenManager
     {
+
+        #region Variables
+
+        GameScreen currentScreen;
+        GameScreen newScreen;
         /// <summary>
-        /// Storing the GameScreens
+        /// screenmanager instance
         /// </summary>
-        Dictionary<string, GameScreen> screens = new Dictionary<string, GameScreen>();
-
+        private static ScreenManager instance;
+        /// <summary>
+        /// Screen Stack
+        /// </summary>
         Stack<GameScreen> ScreenStack = new Stack<GameScreen>();
+        /// <summary>
+        /// screens width and height
+        /// </summary>
+        Vector2 dimensions;
+        #endregion
+
+        #region properties
+        public static ScreenManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new ScreenManager();
+                return Instance;
+            }
+        }
+        public Vector2 Dimensions
+        {
+            get { return dimensions; }
+            set { dimensions = value; }
+        }
 
 
+        #endregion
+
+        #region Main Methods
+        public void AddScreen(GameScreen screen)
+        {
+            newScreen = screen;
+            ScreenStack.Push(screen);
+
+        }
+        public void Initialize()
+        {
+
+        }
+        public void LoadContent(ContentManager Content)
+        {
+
+        }
+        public void Update(GameTime gameTime)
+        {
+            currentScreen.Update(gameTime);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            currentScreen.Draw(spriteBatch);
+
+
+        }
+        #endregion
     }
 }
